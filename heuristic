@@ -1,0 +1,53 @@
+import time
+for n in range(29):
+
+    mark=0
+    ini = time.time()
+    sol=[0]*2000
+    sol[0]=1
+    sol[1]=1
+
+    dist=[0]*2000
+    dist[0]=1
+    dist[1]=1
+    dist[2]=0
+    L=1
+
+    mark=1
+
+    while mark<n-1:
+        achou=0
+        procura=1    
+        Laux=L
+        while achou==0:
+            if dist[procura]==0:
+                Laux=L+procura
+                jatem=1
+                i=0
+            
+                while (i<mark) and (jatem==1):
+                    if sol[i]==1:
+                        calc=Laux-i
+                        if dist[calc]==1:
+                            jatem=0
+                    i=i+1
+                if jatem==1:
+                
+                    j=0
+                    L=Laux
+                    sol[L]=1
+                    while j<L:
+                        if sol[j]==1:
+                            calc=L-j
+                            dist[calc]=1
+                        j=j+1
+                    achou=1
+                    mark=mark+1
+                    dist[procura]=dist[procura]
+                         
+            procura=procura+1       
+    fim = time.time()
+    tempo= fim-ini
+    print('n= ',n, ' L- ',L, 'T= ',tempo)
+
+
